@@ -61,11 +61,11 @@ To conclude, the above figure shows the general traffic between different compon
 
 The DFS suffers from the one-point-failure. If the NameNode is partitioned by network or fails down, all services are declined.
 
-Due to the unreliable nature of Internet, we spent efforts in dealing with network partitions. if a partition happens several results will occur:
+Due to the unreliable nature of Internet, we concluded the following results caused by network partition:
 
 1. Opening and creating file succeed only if the client is in the same partition as NameNode.
 2. Read succeeds if at least one DataNode is in the same partition with DataNode, and NameNode doesn’t have to be in the same partition because the chunk information has all been included in HDFSFile.
-3. Write may succeed if there is at least one available DataNode and the NameNode has to be in the same partition as well. We say write may succeed because it depends the destination DataNode assigned by NameNode. And NameNode may not notice the partition until a system check starts and the partition time(estimated by the difference between current time and last recent heartbeat) exceeds the partition toleration. 
+3. Write may succeed if there is at least one available DataNode AND NameNode has to be in the same partition as well. We say write may succeed because it depends on the destination DataNode assigned by NameNode. And NameNode may not notice the partition until a system check starts and the partition time (estimated by the difference between current time and last recent heartbeat) exceeds the partition toleration which can be configured. 
 
 If the DataNode doesn’t send heartbeat to NameNode, the NameNode believes it to be unavailable. Once the DataNode is believed to be unavailable, NameNode won’t count on chunks information reported from such DataNode. And most of time, several actions are taken subsequently. For example new replications are often made on available nodes. In extreme situation, all replicas of a chunk is missed, the file is believed to be unavailable.
 
