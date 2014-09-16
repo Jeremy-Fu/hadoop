@@ -7,7 +7,7 @@ In this project, we are implementing a MapReduce facility like Hadoop which can 
 
 ##2. System Design
 
-Our MapReduce framework consists of two major parts: (1) distributed file system(DFS) and (2) MapReduce framework. Our DFS provides a global access to file where several replicas are stored in different nodes. And the MapReduce framework divides the data into chunks and processes each of in parallel to achieve high performance.
+Our MapReduce framework consists of two major parts: (1) distributed file system(DFS) and (2) MapReduce framework. Our DFS provides a global access to file where several replicas are stored in different nodes. And the MapReduce framework divides the data into chunks and processes each of chunks in parallel to achieve high performance.
 
 ###2.1 Distributed File System(DFS)
 
